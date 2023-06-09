@@ -1,6 +1,6 @@
 <?php 
 /**
- * Plugin Name: Helping for Checkbox product
+ * Plugin Name: Custom plugin for docanpat
  * Plugin URI: https://developer-s.com/
  * Description: Interact with custom product API
  * Version: 1.0
@@ -242,3 +242,50 @@ function enqueue_custom_admin_css() {
     }
 }
 add_action( 'admin_enqueue_scripts', 'enqueue_custom_admin_css' );
+
+
+
+
+
+/**
+ * Register custom taxonomy for product brand.
+ */
+function register_product_brand_taxonomy() {
+    $labels = array(
+        'name'                       => _x( 'Product Brands', 'taxonomy general name', 'text-domain' ),
+        'singular_name'              => _x( 'Product Brand', 'taxonomy singular name', 'text-domain' ),
+        'search_items'               => __( 'Search Product Brands', 'text-domain' ),
+        'popular_items'              => __( 'Popular Product Brands', 'text-domain' ),
+        'all_items'                  => __( 'All Product Brands', 'text-domain' ),
+        'parent_item'                => null,
+        'parent_item_colon'          => null,
+        'edit_item'                  => __( 'Edit Product Brand', 'text-domain' ),
+        'update_item'                => __( 'Update Product Brand', 'text-domain' ),
+        'add_new_item'               => __( 'Add New Product Brand', 'text-domain' ),
+        'new_item_name'              => __( 'New Product Brand Name', 'text-domain' ),
+        'separate_items_with_commas' => __( 'Separate product brands with commas', 'text-domain' ),
+        'add_or_remove_items'        => __( 'Add or remove product brands', 'text-domain' ),
+        'choose_from_most_used'      => __( 'Choose from the most used product brands', 'text-domain' ),
+        'not_found'                  => __( 'No product brands found.', 'text-domain' ),
+        'menu_name'                  => __( 'Product Brands', 'text-domain' ),
+    );
+
+    $args = array(
+        'hierarchical'          => true,
+        'labels'                => $labels,
+        'show_ui'               => true,
+        'show_in_menu'          => true,
+        'show_in_nav_menus'     => true,
+        'public'                => true,
+        'publicly_queryable'    => true,
+        'query_var'             => true,
+        'rewrite'               => array( 'slug' => 'product_brand', 'with_front' => true ),
+        'show_admin_column'     => true,
+        'show_in_rest'          => true,
+        'show_tagcloud'         => false,
+    );
+
+    register_taxonomy( 'product_brand', array( 'product' ), $args );
+}
+add_action( 'init', 'register_product_brand_taxonomy', 0 );
+

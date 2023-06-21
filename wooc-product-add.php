@@ -126,6 +126,7 @@ function get_awesome_params( \WP_REST_Request $request ) {
 		update_post_meta( $post_id, 'product_urls', $parameters['allImages'] );
 		update_post_meta( $post_id, 'product_instruction_from_checkbox', $parameters['instructions'] );
 		update_post_meta( $post_id, 'checkbox_price', $checkbox_price );
+		update_post_meta( $post_id, 'product_small_thumbnail', $parameters['smallImageUrl'] );
 		$product->save();
 		return $product;
 

@@ -1,6 +1,6 @@
 <?php 
 /**
- * Plugin Name: Custom plugin for docanpat
+ * Plugin Name: Custom Plugin for DocanPat
  * Plugin URI: https://developer-s.com/
  * Description: Interact with custom product API
  * Version: 1.0
@@ -140,6 +140,8 @@ function get_prod_cat_or_add( $string, $parent_id = 0, $taxonomy_slug = 'product
 require_once('wooc-product-add.php');
 require_once('wooc-product-category-add.php');
 require_once('wooc-product-brand-add.php');
+require_once('wooc-product-update-by-sku.php');
+require_once('shortcodes/sc-nav.php');
 
 
 //add_action( 'init', 'myplugin_add_product_category' );
@@ -247,6 +249,7 @@ add_action( 'admin_enqueue_scripts', 'enqueue_custom_admin_css' );
 
 
 
+
 /**
  * Register custom taxonomy for product brand.
  */
@@ -288,4 +291,8 @@ function register_product_brand_taxonomy() {
     register_taxonomy( 'product_brand', array( 'product' ), $args );
 }
 add_action( 'init', 'register_product_brand_taxonomy', 0 );
+
+
+
+
 

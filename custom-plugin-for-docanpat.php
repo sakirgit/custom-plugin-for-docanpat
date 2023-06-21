@@ -52,12 +52,13 @@ function devs_custom_product_api_request($wp) {
 				$data = wc_get_product($product)->get_data();
 				header('Content-Type: application/json');
 				$data['status'] = 'found';
+				$data['product_id'] = $product;
 				echo json_encode($data);
 				exit;
 			 } else {
 				// If the product wasn't found, output a "product not found" message
-				echo json_encode(['status'=>'not_found']);
-				exit;
+				echo json_encode(['status'=>'not_found', 'product_id'=>0]);
+				exit; 
 			 }
 		  }
 	}

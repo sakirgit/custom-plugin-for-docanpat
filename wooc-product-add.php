@@ -128,7 +128,9 @@ function get_awesome_params( \WP_REST_Request $request ) {
 		update_post_meta( $post_id, 'checkbox_price', $checkbox_price );
 		update_post_meta( $post_id, 'product_small_thumbnail', $parameters['smallImageUrl'] );
 		$product->save();
-		return $product;
+		
+		return new WP_REST_Response(["prod_id"=>$post_id], 200);
+	//	return json_encode(['prod_id'=$post_id]);
 
 	//	*/
 		//exit;
